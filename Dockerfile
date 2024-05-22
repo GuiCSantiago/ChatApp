@@ -10,11 +10,15 @@ COPY package*.json ./
 # Instalar as dependências do projeto
 RUN npm install
 
+# Instalar Expo CLI globalmente
+RUN npm install -g expo-cli
+
 # Copiar todos os arquivos do projeto para o diretório de trabalho
 COPY . .
 
-# Expor a porta que o Expo usará
+# Expor as portas que o Expo e o servidor usarão
 EXPOSE 19000
+EXPOSE 3000
 
-# Comando para iniciar o aplicativo Expo
-CMD ["npm", "start"]
+# Iniciar o servidor e o aplicativo Expo e manter o contêiner ativo
+CMD ["sh", "-c", "npm run start-server & npm start & tail -f /dev/null"]
