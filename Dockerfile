@@ -7,8 +7,11 @@ WORKDIR /usr/src/app
 # Copiar o arquivo package.json e package-lock.json
 COPY package*.json ./
 
-# Instalar as dependências do projeto, incluindo @expo/ngrok como dependência de desenvolvimento
+# Instalar as dependências do projeto
 RUN npm install
+
+# Instalar Expo CLI globalmente
+RUN npm install -g expo-cli
 RUN npm install --save-dev @expo/ngrok
 
 # Copiar todos os arquivos do projeto para o diretório de trabalho
@@ -28,4 +31,4 @@ EXPOSE 19000
 EXPOSE 3000
 
 # Iniciar o servidor e o aplicativo Expo e manter o contêiner ativo
-CMD ["sh", "-c", "npm run start-server & npx expo start --tunnel & tail -f /dev/null"]
+CMD ["sh", "-c", "npx expo start --tunnel & tail -f /dev/null"]
