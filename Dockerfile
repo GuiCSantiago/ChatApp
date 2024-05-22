@@ -31,4 +31,4 @@ EXPOSE 19000
 EXPOSE 3000
 
 # Iniciar o servidor e o aplicativo Expo e manter o contêiner ativo
-CMD ["sh", "-c", "npx expo start --tunnel & tail -f /dev/null"]
+CMD ["sh", "-c", "npm run start-server & npx expo start --tunnel & tail -f /dev/null"]
