@@ -10,8 +10,13 @@ const LoginScreen = () => {
     const handleLogin = async () => {
         if (username.trim()) {
             try {
-                const response = await axios.post('http://your-api-url.com/iniciaChat', { usuario: username });
-                navigation.navigate('Chat', { username, identificador: response.data.identificador });
+                const response = await axios.post('http://10.0.2.2:8082/iniciaChat', { usuario: username });
+                console.log('Login Response:', response.data); // Log the response data
+                if (response.data && response.data.identificador) {
+                    navigation.navigate('Chat', { username, identificador: response.data.identificador });
+                } else {
+                    Alert.alert('Erro de Login', 'Não foi possível obter o identificador. Por favor, tente novamente.');
+                }
             } catch (error) {
                 console.error('Erro ao fazer login:', error);
                 if (error.response && error.response.status === 400) {

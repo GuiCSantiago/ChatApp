@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginScreen from './screens/LoginScreen';
 import ChatScreen from './screens/ChatScreen';
-//import UsersScreen from './screens/UsersScreen';
+import UsersScreen from './screens/UsersScreen';
 //import SettingsScreen from './screens/SettingsScreen';
 
 const Stack = createStackNavigator();
@@ -16,6 +16,7 @@ function App() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Chat" component={ChatScreen} />
+        <Stack.Screen name="Users" component={UsersScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
